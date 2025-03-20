@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Bạn có thư nè</title>
+</head>
+<body>
+    <div class="envelope-container">
+        <div class="envelope">
+            <div class="envelope__tab"></div>
+          <div class="envelope__letter">
+                <p>hehe xin chào, 20 năm rồi mình chưa gặp nhau. Không ngờ mình xa nhau lâu như vậy, vậy nên phải gặp lại nhau thôi nhỉ?</p>
+            </div>
+          <div class="envelope--base"></div> 
+        </div>
+    </div>
+
+    <div class="truck-container">
+        <div class="container">
+            <div class="ts">
+           <div class="box"></div>
+            <div class="front">
+                
+                <div class="light"></div>
+                <div class="trapezoid"></div>
+                <div class="pipe"></div>
+                <div class="pipe2"></div>
+                <img class="img1" src="https://i.gifer.com/5zoP.gif">
+                <img class="img2" src="https://i.gifer.com/5zoP.gif">
+                <img class="img3" src="https://i.gifer.com/5zoP.gif">
+                <img class="img4" src="https://i.gifer.com/5zoP.gif">
+                <img class="img5" src="https://i.gifer.com/5zoP.gif">
+                <img class="img6" src="https://i.gifer.com/5zoP.gif">
+                <img class="img7" src="https://i.gifer.com/5zoP.gif">
+                <img class="img8" src="https://i.gifer.com/5zoP.gif">
+                <img class="img9" src="https://i.gifer.com/5zoP.gif">
+                <img class="img10" src="https://i.gifer.com/5zoP.gif">
+                <img class="img11" src="https://i.gifer.com/5zoP.gif">
+                <div class="front1"></div>
+                <div class="front2"></div>
+                <div class="window"></div>
+                 <div class="hood"></div>    
+            </div>
+             <div class="tyre1">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre2">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre3">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre4">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add audio element with your music file -->
+    <audio id="backgroundMusic" loop>
+        <source src="./phonecer.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        // Function to play music
+        function playMusic() {
+            const music = document.getElementById('backgroundMusic');
+            
+            // Try to play music
+            const playPromise = music.play();
+            
+            // Handle autoplay restrictions
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay started successfully
+                    console.log("Music playing automatically");
+                }).catch(error => {
+                    // Autoplay was prevented
+                    console.log("Autoplay prevented by browser:", error);
+                    
+                    // Create a notification for the user
+                    const notification = document.createElement('div');
+                    notification.style.position = 'fixed';
+                    notification.style.top = '20px';
+                    notification.style.left = '50%';
+                    notification.style.transform = 'translateX(-50%)';
+                    notification.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                    notification.style.color = 'white';
+                    notification.style.padding = '10px 20px';
+                    notification.style.borderRadius = '5px';
+                    notification.style.zIndex = '1000';
+                    notification.style.cursor = 'pointer';
+                    notification.innerHTML = 'Click anywhere to play music';
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Add event listener to play music on user interaction
+                    document.addEventListener('click', function() {
+                        music.play();
+                        notification.style.display = 'none';
+                    }, { once: true });
+                });
+            }
+        }
+        
+        // Try to play music when the page loads
+        window.addEventListener('load', playMusic);
+        
+        // Fallback: try to play after a short delay
+        setTimeout(playMusic, 1000);
+        
+        // Another fallback for iOS devices
+        document.addEventListener('touchstart', function() {
+            const music = document.getElementById('backgroundMusic');
+            if (music.paused) {
+                music.play();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
